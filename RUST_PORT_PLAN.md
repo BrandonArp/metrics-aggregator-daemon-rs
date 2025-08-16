@@ -571,6 +571,7 @@ impl SeriesLoggingSink {
 - [x] Transformation layer (TagDroppingSource, TransformingSource)
 - [x] Period filtering sinks
 - [x] Series logging sink for analysis
+- [x] **Sink request batching and data merging optimization** (HIGH PRIORITY)
 - [x] Comprehensive metrics and tracing
 - [x] Docker containerization
 ```
@@ -664,6 +665,10 @@ method = "POST"
 - Measure memory usage, CPU utilization, and latency under load
 - Compare resource efficiency in containerized environments
 - Validate performance claims with production-like data volumes
+
+### Critical Performance Optimization
+
+**Sink Request Batching**: The Java implementation has a fundamental bottleneck where each aggregated data object becomes a separate request, creating significant network overhead and poor throughput. The Rust implementation will address this with intelligent request batching and data merging, potentially providing **10-100x improvement** in request processing performance. This optimization is documented in detail in `docs/sink_batching_analysis.md` and tracked in [Issue #4](https://github.com/BrandonArp/metrics-aggregator-daemon-rs/issues/4).
 
 ## Risk Assessment
 
