@@ -19,7 +19,7 @@
 //! Defines the fundamental data structures used throughout MAD for representing
 //! metrics, records, and aggregated data.
 
-use ahash::HashMap;
+use ahash::{HashMap, HashMapExt};
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;

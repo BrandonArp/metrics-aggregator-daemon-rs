@@ -25,7 +25,7 @@ This is a Rust rewrite of the [Java Metrics Aggregator Daemon](https://github.co
 
 ```bash
 # Clone the repository
-git clone https://github.com/ArpNetworking/metrics-aggregator-daemon-rs.git
+git clone https://github.com/BrandonArp/metrics-aggregator-daemon-rs.git
 cd metrics-aggregator-daemon-rs
 
 # Build release binary
