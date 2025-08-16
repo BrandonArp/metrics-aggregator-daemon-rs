@@ -1,0 +1,93 @@
+[package]
+name = "mad"
+version = "0.1.0"
+edition = "2021"
+authors = ["Brandon Arp <brandon.arp@inscopemetrics.io>", "Ville Koskela <ville.koskela@inscopemetrics.io>"]
+description = "Metrics Aggregator Daemon - Rust implementation"
+repository = "https://github.com/ArpNetworking/metrics-aggregator-daemon-rs"
+documentation = "https://github.com/ArpNetworking/metrics-aggregator-daemon-rs"
+license = "Apache-2.0"
+readme = "README.md"
+keywords = ["metrics", "aggregation", "timeseries", "monitoring"]
+categories = ["network-programming", "command-line-utilities"]
+
+[package.metadata]
+java_version = "https://github.com/ArpNetworking/metrics-aggregator-daemon"
+migration_guide = "RUST_PORT_PLAN.md"
+
+[[bin]]
+name = "mad"
+path = "src/main.rs"
+
+[dependencies]
+# Core runtime
+tokio = { version = "1.0", features = ["full"] }
+axum = "0.7"
+tower = { version = "0.4", features = ["full"] }
+tower-http = { version = "0.5", features = ["cors", "trace"] }
+hyper = { version = "1.0", features = ["full"] }
+
+# Serialization and configuration
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+config = "0.14"
+toml = "0.8"
+
+# Logging and tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+# Async utilities
+async-trait = "0.1"
+futures = "0.3"
+
+# Performance
+ahash = "0.8"
+dashmap = "5.5"
+parking_lot = "0.12"
+
+# Time handling
+chrono = { version = "0.4", features = ["serde"] }
+time = { version = "0.3", features = ["serde", "formatting", "parsing"] }
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Networking
+socket2 = "0.5"
+
+# Protocol support (Phase 2)
+# rdkafka = { version = "0.36", optional = true }
+# tonic = { version = "0.10", optional = true }
+# prost = { version = "0.12", optional = true }
+# reqwest = { version = "0.11", optional = true }
+
+# Regex for transformations (Phase 3)
+# regex = { version = "1.9", optional = true }
+
+[dev-dependencies]
+tokio-test = "0.4"
+criterion = { version = "0.5", features = ["html_reports"] }
+tempfile = "3.0"
+
+[features]
+default = []
+# Phase 2 features (commented until dependencies are added)
+# kafka = ["rdkafka"]
+# grpc = ["tonic", "prost"] 
+# http_client = ["reqwest"]
+# transformations = ["regex"]
+
+# Benchmarks will be added in Phase 1
+# [[bench]]
+# name = "histogram_performance"
+# harness = false
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[profile.bench]
+debug = true

@@ -1,0 +1,33 @@
+# Rust
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Configuration (may contain secrets)
+config/local/
+*.local.conf
+
+# Benchmarks
+/benches/target/
+
+# Coverage
+lcov.info
+coverage/
+
+# Docker
+.dockerignore
